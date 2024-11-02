@@ -11,6 +11,11 @@ const Navbar = async () => {
     await signIn({ provider: "github" });
   };
 
+  const handleLogout = async () => {
+    "use server";
+    await signOut({ redirectTo: "/" });
+  };
+
   return (
     <>
       <header className="px-5 py-3 bg-white shadow-sm font-work-sans">
@@ -24,17 +29,17 @@ const Navbar = async () => {
                 <Link href="./startup/create">
                   <span>create</span>
                 </Link>
-                <button onClick={signOut}>
-                  <span>Logout</span>
+                <button type="button" onClick={handleLogout}>
+                  Logout
                 </button>
                 <Link href={`/user/${session.id}`}>
                   <span>{session.user.name}</span>
                 </Link>
               </>
             ) : (
-              <button onClick={handleLogin}>
-                <span>Login</span>
-              </button>
+              <form onSubmit={handleLogin}>
+                <button type="submit">Login</button>
+              </form>
             )}
           </div>
         </nav>
