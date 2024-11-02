@@ -2,9 +2,9 @@ export default function layout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <div>
+    <main className="font-work-sans">
       <h1>Layout</h1>
       {children}
-    </div>
+    </main>
   );
 }
